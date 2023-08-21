@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Receipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+
+<!-- posting data from front end to backend -->
+
+    <div class="container-fluid">
+      <!-- <form class="col-6 mx-auto card p-3 shadow-lg " method="POST" enctype="multipart/form-data"> -->
+      {%csrf_token%}
+   
+        <nav class=" p-2 navbar bg-body-tertiary shadow-lg " >
+          <div class="container-fluid">
+            <a class="navbar-brand">Hi, {{request.user.first_name}}</a>
+            <form class="d-flex" role="search">
+              <a href="/logout/" class="btn btn-outline-success" type="submit">Logout</a>
+            </form>
+          </div>
+      </nav>
+
+      <div class="container mt-5">
+        <form class="col-6 mx-auto card p-3 shadow-lg " method="POST" enctype="multipart/form-data">
+
+    <h2>Add Reciepes</h2>
+        <hr>
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Receipe Name</label>
+          <input type="text" name="receipe_name" required class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label" >Receipe Description</label>
+          <textarea class="form-control" name="receipe_description" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Receipe Image</label>
+          <input type="file" class="form-control"  name="receipe_image">
+        </div>
+        <button type="submit" class="btn btn-success">Add Receipe</button>
+      </form>
+
+    </div>
+    </form> 
+
+<form>
+
+  <div class="container">
+    
+    <div class="mx-auto col-6 m-2">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Search Recipe Here</label>
+        <input  name="search" type="text" class="form-control">
+        <!--here name=search is  a key which can be used in the backend to get the value of search -->
+      </div>
+        <button type="submit" class="btn btn-primary mx-auto m-2 col-2">search</button>
+
+    </form>
+
+    </div>
+  
+  </div>
+</form>
+
+      <hr>
+      
+      <!-- data coming from backend to frontend -->
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Recipe Name</th>
+          <th scope="col">Recipe Description</th>
+          <th scope="col">Recipe Image</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+        <tbody>
+          <!-- using for loop to get all data from backend and display them at frontend -->
+          {% for recipe in Receipe %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{recipe.receipe_name}}</td>
+              <td>{{recipe.receipe_description}}</td>
+              <td>
+                <img src=" /media/{{recipe.receipe_image}}" style="height:100px"></td>
+              <td>
+                <a href="/delete-receipe/{{recipe.id}}/" class="btn btn-danger">Delete</a>
+                <a href="/update-receipe/{{recipe.id}}/" class="btn btn-success">Update</a>
+                <!-- This is route to the url path which make it work and make connection with the update func -->
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+  </div>
+         
+    </div> 
+    
+  </body>
+</html>
+
+

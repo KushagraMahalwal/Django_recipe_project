@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2>A basic HTML table</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  {% for people in peoples %}
+  <tr>
+
+        <td>{{forloop.counter}}</td>
+        <td>{{people.name}}</td>
+        <td>{{people.age}}</td>
+
+  </tr>
+  {% endfor %}
+
+</table>
+<p>{{text}}</p>
+
+
+<p>To understand the example better, we have added borders to the table.</p>
+
+</body>
+</html>
+
