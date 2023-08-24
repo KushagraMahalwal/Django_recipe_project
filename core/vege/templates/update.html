@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Receipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <div class="container mt-5">
+      <form class="col-6 mx-auto card p-3 shadow-lg " method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+      
+        <h2>Update Reciepes</h2>
+        <hr>
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Receipe Name</label>
+          <input type="text" name="receipe_name" value="{{Receipes.receipe_name}}" required class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label" >Receipe Description</label>
+          <textarea class="form-control" name="receipe_description" required>{{Receipes.receipe_description}}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Receipe Image</label>
+          <input type="file" class="form-control" value="{{Receipes.receipe_image}}"  name="receipe_image">
+        </div>
+        <button type="submit" class="btn btn-success">Update Receipe</button>
+      </form>
+
+    </form> 
+   
+ 
+    </div> 
+    
+  </body>
+</html>
