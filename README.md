@@ -1,1 +1,1 @@
-Project on Recipe app, using Django, bootstap to craete frontend and rendring it through django and python.
+Project on Recipe app, using Django, bootstap to craete frontend and rendering it through django and python.
